@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Switch de Suscripción</title>
+    <style>
+      h3 {
+        display: block; /* Hace que el label use todo el ancho disponible, facilitando el centrado */
+        text-align: center; /* Centra el texto */
+        font-weight: bold; /* Aplica negritas */
+        color: #7a7a7a; /* Color del texto */
+        margin: 10px 0; /* Espaciado alrededor de los labels */
+      }
+
+      select {
+        text-align: center;
+        text-align-last: center; /* Asegura que el texto se centre en algunos navegadores */
+        -moz-text-align-last: center; /* Específico de Firefox */
+        width: 100px; /* O ajusta según necesites */
+        margin: 10px 0; /* Espaciado alrededor de los dropdowns */
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #b3cb65;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #b3cb65;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Estilo básico adicional */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>SELECCIONA TU TIPO DE PLAN</h2>
+
+    <h4>Mensual</h4>
+    <label class="switch">
+      <input type="checkbox" id="toggleSwitch" />
+      <span class="slider round"></span>
+    </label>
+    <h4>Anual (1 mes gratis)</h4>
+
+    <br />
+    <br />
+    <!-- Primer dropdown y label -->
+    <select onchange="actualizarLabel(this, 'label1', 'label4')">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+    <h3 id="label1">$690 MXN</h3>
+    <label class="subscriptionLabel">MENSUAL</label>
+
+    <!-- Segundo dropdown y label -->
+    <select onchange="actualizarLabel(this, 'label2', 'label5')">
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+    <h3 id="label2">$1,190 MXN</h3>
+    <label class="subscriptionLabel">MENSUAL</label>
+
+    <!-- Tercer dropdown y label -->
+    <select onchange="actualizarLabel(this, 'label3', 'label6')">
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+    </select>
+    <h3 id="label3">$2,150 MXN</h3>
+    <label class="subscriptionLabel">MENSUAL</label>
+
+    <div>
+      <h4 id="label4">1</h4>
+      <h4 id="label5">3</h4>
+      <h4 id="label6">7</h4>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mueve la definición de `selects` a un nivel más alto para que esté disponible globalmente dentro de este bloque
+        var selects = document.querySelectorAll("select");
+
+        function actualizarLabel(dropdown, labelId, h4Id) {
+          var valor = dropdown.value;
+          var esAnual = document.getElementById("toggleSwitch").checked;
+          var preciosMensuales = {
+            label1: { "1": "$690 MXN", "2": "$990 MXN" },
+            label2: {
+              "3": "$1,190 MXN",
+              "4": "$1,490 MXN",
+              "5": "$1,790 MXN",
+              "6": "$2,090 MXN",
+            },
+            label3: {
+              "7": "$2,150 MXN",
+              "8": "$2,450 MXN",
+              "9": "$2,750 MXN",
+              "10": "$3,050 MXN",
+              "11": "$3,350 MXN",
+              "12": "$3,650 MXN",
+              "13": "$3,950 MXN",
+              "14": "$4,250 MXN",
+              "15": "$4,550 MXN",
+              "16": "$4,850 MXN",
+              "17": "$5,150 MXN",
+              "18": "$5,450 MXN",
+              "19": "$5,750 MXN",
+              "20": "$6,050 MXN",
+            },
+          };
+          var preciosAnuales = {
+            label1: { "1": "$7,590 MXN", "2": "$7,890 MXN" },
+            label2: {
+              "3": "$13,090 MXN",
+              "4": "$13,390 MXN",
+              "5": "$13,690 MXN",
+              "6": "$13,990 MXN",
+            },
+            label3: {
+              "7": "$23,650 MXN",
+              "8": "$23,950 MXN",
+              "9": "$24,250 MXN",
+              "10": "$24,550 MXN",
+              "11": "$24,850 MXN",
+              "12": "$25,150 MXN",
+              "13": "$25,450 MXN",
+              "14": "$25,750 MXN",
+              "15": "$26,050 MXN",
+              "16": "$26,350 MXN",
+              "17": "$26,650 MXN",
+              "18": "$26,950 MXN",
+              "19": "$27,250 MXN",
+              "20": "$27,550 MXN",
+            },
+          };
+
+          var preciosActuales = esAnual ? preciosAnuales : preciosMensuales;
+          var texto = preciosActuales[labelId][valor] || "Precio no disponible";
+
+          document.getElementById(labelId).innerText = texto;
+          document.getElementById(h4Id).innerText = valor;
+        }
+
+        selects.forEach((select, index) => {
+          select.addEventListener("change", function () {
+            actualizarLabel(
+              select,
+              "label" + (index + 1),
+              "label" + (index + 4)
+            );
+          });
+          // Inicializar en la carga
+          actualizarLabel(select, "label" + (index + 1), "label" + (index + 4));
+        });
+
+        document
+          .getElementById("toggleSwitch")
+          .addEventListener("change", function () {
+            var labels = document.querySelectorAll(".subscriptionLabel");
+            var plan = this.checked ? "ANUAL" : "MENSUAL";
+            labels.forEach((label) => {
+              label.textContent = plan;
+            });
+
+            // Aquí usamos la variable `selects` correctamente definida
+            selects.forEach((select, index) => {
+              actualizarLabel(
+                select,
+                "label" + (index + 1),
+                "label" + (index + 4)
+              );
+            });
+          });
+      });
+    </script>
+  </body>
+</html>

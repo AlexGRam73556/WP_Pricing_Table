@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Dropdowns y Labels Dinámicos sin Mapeo</title>
+<script>
+function actualizarLabel(dropdown, labelId) {
+  var valor = dropdown.value; // Obtiene el valor seleccionado del dropdown
+  var texto = ''; // Inicializa la variable que almacenará el texto a mostrar
+
+  // Determina el texto a mostrar basado en el valor del dropdown y el labelId
+  if (labelId === 'label1') {
+    if (valor === '1') texto = 'a';
+    else if (valor === '2') texto = 'b';
+  } else if (labelId === 'label2') {
+    if (valor === '3') texto = 'c';
+    else if (valor === '4') texto = 'd';
+    else if (valor === '5') texto = 'e';
+    else if (valor === '6') texto = 'f';
+  } else if (labelId === 'label3') {
+    if (valor === '7') texto = 'g';
+    else if (valor === '8') texto = 'h';
+    else if (valor === '9') texto = 'i';
+    else if (valor === '10') texto = 'j';
+  }
+
+  // Actualiza el texto del label correspondiente
+  document.getElementById(labelId).innerText = texto;
+}
+</script>
+</head>
+<body>
+
+<!-- Primer dropdown y label -->
+<select onchange="actualizarLabel(this, 'label1')">
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>
+<label id="label1">a</label>
+
+<!-- Segundo dropdown y label -->
+<select onchange="actualizarLabel(this, 'label2')">
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+</select>
+<label id="label2">c</label>
+
+<!-- Tercer dropdown y label -->
+<select onchange="actualizarLabel(this, 'label3')">
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+<label id="label3">g</label>
+
+</body>
+</html>
